@@ -39,22 +39,22 @@ public class Main {
 //	}
 
 	
-//	public static Connection getConnection() throws Exception{
-//		try {
-//			
-//			String url = "jdbc:mysql://cit-airports.czp0ytib1pp5.us-east-1.rds.amazonaws.com:3306/";
-//			String userName = "airports";
-//			String password = "swqpneel";
-//			String dbName = "MySQL";
-//			String driver = "com.mysql.jdbc.Driver";
-//			Connection conn = DriverManager.getConnection(url + dbName, userName, password);
-//
-//			
-//			//Connection conn = DriverManager.getConnection(url, username, password);
-//			System.out.println("Connected.");
-//			return conn;
-//		}
-//		catch (Exception e){e.printStackTrace();}
-//			return null;
-//	}
+	public static Connection getConnection() throws Exception{
+		try {
+			
+			String url = "jdbc:mysql://cit-airports.czp0ytib1pp5.us-east-1.rds.amazonaws.com:3306/";
+			String userName = "airports";
+			String password = "swqpneel";
+			String dbName = "MySQL";
+			String driver = "com.mysql.jdbc.Driver";
+			Connection conn = DriverManager.getConnection(url + dbName, userName, password);
+
+			
+			//Connection conn = DriverManager.getConnection(url, username, password);
+			System.out.println("Connected.");
+			return conn;
+		}
+		catch (Exception e){e.printStackTrace();}
+			return null;
+	}
 }
