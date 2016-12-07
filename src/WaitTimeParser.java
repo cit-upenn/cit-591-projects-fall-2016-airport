@@ -66,8 +66,8 @@ public class WaitTimeParser {
 					break;
 			case 5: wait = 38;
 					break;
-//			case 6: 
-//					break;
+			case 6: wait = 53;
+					break;
 //			case 7:
 //					break;
 //			case 8:
