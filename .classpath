@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path=""/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-<<<<<<< HEAD
-	<classpathentry kind="lib" path="/Users/veronikaalex/Desktop/ojdbc7.jar"/>
-=======
-<<<<<<< HEAD
-	<classpathentry kind="lib" path="/Users/huongvu/Downloads/org.json.jar"/>
-=======
-	<classpathentry kind="lib" path="/Users/veronikaalex/Desktop/591_Final_Project/mysql-connector-java-5.1.40-bin.jar"/>
->>>>>>> 1e864a728cf206b235fcb1c8ee46e256bed4fead
->>>>>>> 70fe04e12fb3f76571307e8bda32282f035a5a89
+	<classpathentry kind="lib" path="ojdbc7.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
