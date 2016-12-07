@@ -1,3 +1,4 @@
+package src;
 /**
  * This class represents a garage.
  * @author huongvu

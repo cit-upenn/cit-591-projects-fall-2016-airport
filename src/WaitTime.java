@@ -1,3 +1,4 @@
+package src;
 /**
  * This class represents a WaitTime from the most recent 25.
  * @author huongvu
