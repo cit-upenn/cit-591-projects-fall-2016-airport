@@ -4,16 +4,34 @@ import java.sql.DriverManager;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.sql.ResultSet;
 import java.sql.DatabaseMetaData;
 
-public class Main {
-	private static final String DB_URL = "cit591-airports.czp0ytib1pp5.us-east-1.rds.amazonaws.com";
-	private static final String DB_NAME = "ORCL";
-	private static final String USER = "airports";
-	private static final String PASSWORD = "swapneel";  
-   
-	public static void main(String[] args) {
+
+public class Database {
+	
+	// Database information and credentials
+	private final String DB_URL = "cit591-airports.czp0ytib1pp5.us-east-1.rds.amazonaws.com";
+	private final String DB_NAME = "ORCL";
+	private final String USER = "airports";
+	private final String PASSWORD = "swapneel";  
+	private ArrayList<Integer> delays = new ArrayList<Integer>();
+	
+	
+	/**
+	 * Constructor.
+	 */
+	public Database() {
+		
+	}
+	
+	
+	/**
+	 * 
+	 * @return ArrayList of flight delays
+	 */
+	public ArrayList<Integer> pullFlightDelayData() {
 		Connection conn = null;
 		Statement stmt = null;
 
@@ -25,7 +43,7 @@ public class Main {
 
 			// Build your sql string
 			String sqlQuery;
-			sqlQuery = "SELECT * FROM FLIGHTDELAYS";
+			sqlQuery = "SELECT * FROM FLIGHTDELAYS WHERE DAY_OF_WEEK = 4 AND MONTH = 11 AND CRS_DEP_TIME > 1300 AND CRS_DEP_TIME < 1400";
 
 			// Execute it
 			System.out.println("Executing query... " + sqlQuery);
@@ -35,9 +53,14 @@ public class Main {
 			while(rs.next()) {
 				//Retrieve by column name
 				int month  = rs.getInt("MONTH");
+				int dayOfWeek = rs.getInt("DAY_OF_WEEK");
+				int departTime = rs.getInt("CRS_DEP_TIME");
 				String carr = rs.getString("CARRIER");
-				System.out.println("Month: " + month + "\tCarrier: " + carr);
-			} 
+				int delayTime = rs.getInt("DEP_DELAY");
+				delays.add(delayTime);
+//				System.out.println("Month: " + month + "   " + "Day of Week: " + dayOfWeek + "   " + "Depart Time: " + departTime + 
+//						"   " + "Delay: " + delayTime);
+			}
 			
 			// Clean-up time
 			rs.close();
@@ -62,5 +85,12 @@ public class Main {
 				se.printStackTrace();
 			}
 		}
+		return delays;
 	}
+	
+	
+	
+	
+	
+	
 }
