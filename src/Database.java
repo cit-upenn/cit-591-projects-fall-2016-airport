@@ -19,7 +19,11 @@ public class Database {
 	private final String DB_URL = "cit591-airports.czp0ytib1pp5.us-east-1.rds.amazonaws.com";
 	private final String DB_NAME = "ORCL";
 	private final String USER = "airports";
-	private final String PASSWORD = "swapneel";  
+	private final String PASSWORD = "swapneel";
+	private int dayOfWeek;
+	private int month;
+	private int time;
+	private int dayOfMonth;
 	private ArrayList<Integer> delays = new ArrayList<Integer>();
 	private ArrayList<Integer> customsWait = new ArrayList<Integer>();
 	
@@ -27,7 +31,12 @@ public class Database {
 	/**
 	 * Constructor.
 	 */
-	public Database() {}
+	public Database(int dayOfWeek, int month, int time, int dayOfMonth){
+		this.dayOfWeek = dayOfWeek;
+		this.month = month;
+		this.time = time;
+		this.dayOfMonth = dayOfMonth;
+	}
 	
 	
 	/**
@@ -46,7 +55,8 @@ public class Database {
 
 			// Build your sql string
 			String sqlQuery;
-			sqlQuery = "SELECT * FROM FLIGHTDELAYS WHERE DAY_OF_WEEK = 4 AND MONTH = 11 AND CRS_DEP_TIME > 1300 AND CRS_DEP_TIME < 1400";
+			sqlQuery = "SELECT * FROM FLIGHTDELAYS WHERE DAY_OF_WEEK = " + dayOfWeek 
+					+ " AND MONTH = " + month + " AND CRS_DEP_TIME > " + time + " AND CRS_DEP_TIME < " + (time+100);
 
 
 			// Execute it

@@ -13,9 +13,10 @@ public class FlightDelayAnalyzer {
 	/**
 	 * Constructor.
 	 */
-	public FlightDelayAnalyzer() {
-		Database db = new Database();
-		delays = db.pullFlightDelayData();
+	public FlightDelayAnalyzer(ArrayList<Integer> delays) {
+		//Database db = new Database();
+		//delays = db.pullFlightDelayData(delays);
+		this.delays = delays;
 		
 
 //		for (int delay : delays) {
