@@ -17,14 +17,13 @@ public class Database {
 	private final String USER = "airports";
 	private final String PASSWORD = "swapneel";  
 	private ArrayList<Integer> delays = new ArrayList<Integer>();
+	private ArrayList<Integer> customsWait = new ArrayList<Integer>();
 	
 	
 	/**
 	 * Constructor.
 	 */
-	public Database() {
-		
-	}
+	public Database() {}
 	
 	
 	/**
@@ -45,8 +44,8 @@ public class Database {
 			String sqlQuery;
 			sqlQuery = "SELECT * FROM FLIGHTDELAYS WHERE DAY_OF_WEEK = 4 AND MONTH = 11 AND CRS_DEP_TIME > 1300 AND CRS_DEP_TIME < 1400";
 
-			// Execute it
-			System.out.println("Executing query... " + sqlQuery);
+			// Execute it--currently commented out since this is not supposed to print out a value
+			//System.out.println("Executing query... " + sqlQuery);
 			ResultSet rs = stmt.executeQuery(sqlQuery);
 
 			// Iterate over rs to retrieve results
@@ -88,7 +87,58 @@ public class Database {
 		return delays;
 	}
 	
-	
+	public ArrayList<Integer> queryCustomsData(){
+		
+		Connection conn = null;
+		Statement stmt = null;
+		
+		try {
+			// Standard setup
+			DriverManager.registerDriver (new oracle.jdbc.driver.OracleDriver());
+			conn = DriverManager.getConnection("jdbc:oracle:thin:@//" + DB_URL + "/" + DB_NAME, USER, PASSWORD);
+			stmt = conn.createStatement();
+
+			// Build your sql string
+			String sqlQuery;
+			sqlQuery = "select * from customs_wait_times where arrival_date like \'%22-NOV%\'";
+
+			// Execute it
+			System.out.println("Executing query... " + sqlQuery);
+			ResultSet rs = stmt.executeQuery(sqlQuery);
+
+			// Iterate over rs to retrieve results
+			while(rs.next()) {
+				//Retrieve by column name
+				int avgWaitTime = rs.getInt("AVG_WAIT");
+				customsWait.add(avgWaitTime);
+			}
+			
+			// Clean-up time
+			rs.close();
+			stmt.close();
+			conn.close();
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally{
+			//finally block used to close resources
+			try {
+				if (stmt != null)
+					stmt.close();
+			} catch (SQLException se2) {
+			}// nothing we can do
+			
+			try {
+				if (conn != null)
+					conn.close();
+			} catch(SQLException se){
+				se.printStackTrace();
+			}
+		}
+		return customsWait;
+		
+	}
 	
 	
 	
