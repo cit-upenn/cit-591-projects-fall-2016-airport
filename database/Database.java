@@ -8,7 +8,11 @@ import java.util.ArrayList;
 import java.sql.ResultSet;
 import java.sql.DatabaseMetaData;
 
-
+/**
+ * This class pulls data from the Oracle database hosted in Amazon Web Services.
+ * @author veronikaalex
+ *
+ */
 public class Database {
 	
 	// Database information and credentials
@@ -28,8 +32,8 @@ public class Database {
 	
 	
 	/**
-	 * 
-	 * @return ArrayList of flight delays
+	 * Connects to database, querys database based on input flight time and date.
+	 * @return ArrayList of flight delays for a specific month, day of week, and time frame
 	 */
 	public ArrayList<Integer> pullFlightDelayData() {
 		Connection conn = null;
@@ -46,7 +50,7 @@ public class Database {
 			sqlQuery = "SELECT * FROM FLIGHTDELAYS WHERE DAY_OF_WEEK = 4 AND MONTH = 11 AND CRS_DEP_TIME > 1300 AND CRS_DEP_TIME < 1400";
 
 			// Execute it
-			System.out.println("Executing query... " + sqlQuery);
+			//System.out.println("Executing query... " + sqlQuery);
 			ResultSet rs = stmt.executeQuery(sqlQuery);
 
 			// Iterate over rs to retrieve results
