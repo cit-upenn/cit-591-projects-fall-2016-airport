@@ -1,6 +1,5 @@
 package src;
 import java.util.ArrayList;
-import database.Database;
 
 /**
  * Predicts the flight delay time of a flight.

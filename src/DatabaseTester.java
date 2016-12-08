@@ -1,4 +1,4 @@
-package database;
+package src;
 
 public class DatabaseTester {
 
