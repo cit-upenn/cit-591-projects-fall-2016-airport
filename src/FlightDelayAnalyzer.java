@@ -18,10 +18,6 @@ public class FlightDelayAnalyzer {
 		//delays = db.pullFlightDelayData(delays);
 		this.delays = delays;
 		
-
-//		for (int delay : delays) {
-//			System.out.println(delay);
-//		}
 	}
 	
 	

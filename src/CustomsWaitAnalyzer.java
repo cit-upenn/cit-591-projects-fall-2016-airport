@@ -7,10 +7,10 @@ public class CustomsWaitAnalyzer {
 	private ArrayList<Integer> waitTimes;
 	private double avgWait;
 	private double waitCount;
-	private Database testDB = new Database();
+	//private Database testDB = new Database();
 	
-	public CustomsWaitAnalyzer(){
-		this.waitTimes = testDB.queryCustomsData();
+	public CustomsWaitAnalyzer(ArrayList<Integer> waitTimes){
+		this.waitTimes = waitTimes;
 		waitCount = waitTimes.size();
 	}
 	
