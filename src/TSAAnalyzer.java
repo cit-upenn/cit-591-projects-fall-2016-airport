@@ -10,10 +10,9 @@ import org.json.JSONException;
  * @author huongvu
  *
  */
-public class DataAnalyzer {
+public class TSAAnalyzer {
 
 	private ArrayList<WaitTime> waitTimes = new ArrayList<WaitTime>();
-	private ArrayList<Garage> garages = new ArrayList<Garage>();
 	
 	/**
 	 * This is the constructor
@@ -21,11 +20,9 @@ public class DataAnalyzer {
 	 * @param parser2
 	 * @throws JSONException
 	 */
-	public DataAnalyzer(WaitTimeParser parser1, GarageJSONParser parser2) throws JSONException {
+	public TSAAnalyzer(WaitTimeParser parser1) throws JSONException {
 		WaitTimeCollection col1 = new WaitTimeCollection(parser1);
 		waitTimes = col1.getWaitTimes();
-		GarageCollection col2 = new GarageCollection(parser2);
-		garages = col2.getGarages();
 	}
 	
 	/**
