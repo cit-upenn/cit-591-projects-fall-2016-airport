@@ -69,21 +69,25 @@ public class Database {
 		//if minute is less than 30, the lower bound will be in the previous hour, so account for that
 		if(inputMin < 30){
 			setMin = 60 - (30-inputMin);
-			setHour = (inputHour--) * 100;
+			setHour = (inputHour - 1) * 100;
 		}
-		else{setHour = inputHour * 100;}
+		else{
+			setHour = inputHour * 100;
+			setMin = inputMin - 30; }
 		
 		//Set lowerTime and upperTime using the lowerTime
 		lowerTime = setHour + setMin ;
 		
 		//Check to make sure the minute for the upper bound is right
 		if(inputMin > 30){
-			setMin = 60 - inputMin;
-			setHour = (inputHour++)*100;
+			setMin = 30 - (60 - inputMin);
+			setHour = (inputHour + 1)*100;
 		}
 		else{
 			setHour = inputHour * 100;
-			setMin = inputMin + 30;}
+			setMin = inputMin + 30;
+			}
+		
 		//set the uppertime
 		upperTime = setHour + setMin;
 		
