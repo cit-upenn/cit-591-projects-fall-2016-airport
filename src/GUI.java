@@ -1,0 +1,115 @@
+package src;
+import java.io.IOException;
+
+import org.json.JSONException;
+
+import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+
+
+public class GUI extends Application {
+	
+	String text = "";
+
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		primaryStage.setTitle("Philadelphia Airport Planner");
+		BorderPane root = new BorderPane();
+		
+		VBox tsa = new VBox();
+		VBox wait = new VBox();
+		VBox garage = new VBox();
+		
+		root.setLeft(tsa);
+		root.setRight(wait);
+		root.setBottom(garage);
+		
+		//TSA VBox on the left
+		tsa.setPadding(new Insets(10));
+	    tsa.setSpacing(8);
+		Text tsaText = new Text();
+		tsaText.setText("Check TSA Security Wait Time at:");
+		
+		ObservableList<String> options = FXCollections.observableArrayList(
+				"All Checkpoints",
+				"Checkpoint A-East",
+	    		"Checkpoint A-West Sec 5",
+	    		"Checkpoint A-West Sec 7",
+	    		"Checkpoint B",
+	    		"Checkpoint C",
+	    		"Checkpoint D/E",
+	    		"Checkpoint F"
+		);
+		ComboBox<String> checkpointSelection = new ComboBox<String>(options);
+		
+		Button checkTSA = new Button();
+		Text tsaOutput = new Text();
+		
+		checkTSA.setText("Check now");
+		checkTSA.setOnAction(new EventHandler<ActionEvent>() {
+			 
+            @Override
+            public void handle(ActionEvent event) {
+            	TSACaller caller = new TSACaller();
+                try {
+                	if (caller.getAllCheckPoint().containsKey(checkpointSelection.getValue())) {
+                		text = Integer.toString(caller.getWaitTime(checkpointSelection.getValue())) + " minutes";
+					} else {
+						text = "Not available";
+					}
+                
+            		tsaOutput.setText(text);
+ 
+                	
+					System.out.println(text);
+				} catch (JSONException | IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+            }
+        });
+		
+		
+		tsa.getChildren().addAll(tsaText, checkpointSelection, checkTSA, tsaOutput);
+		
+		//Delay/Customs wait VBox on the right
+		wait.setPadding(new Insets(10));
+	    wait.setSpacing(8);
+	    
+		Text waitText = new Text();
+		waitText.setText("Are you arriving or departing from Philadelphia Airport?");
+		
+		wait.getChildren().add(waitText);
+		
+		//Garage VBox at the bottom
+		garage.setPadding(new Insets(10));
+	    garage.setSpacing(8);
+	    
+	    Text garageText = new Text();
+		garageText.setText("Parking Availability at Philadelphia Airport");
+		
+		garage.getChildren().add(garageText);
+		
+		primaryStage.setScene(new Scene(root, 600, 600));
+	    primaryStage.show();
+		
+
+	}
+
+	public static void main(String[] args) {
+		launch(args);
+
+	}
+
+}
