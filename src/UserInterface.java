@@ -40,8 +40,9 @@ public class UserInterface extends Application {
         StackPane root = new StackPane();
         
 		SplitPane splitPane1 = new SplitPane();
+		SplitPane.setResizableWithParent(splitPane1, true);
 		splitPane1.setOrientation(Orientation.HORIZONTAL);
-		splitPane1.setPrefSize(200, 200);
+		splitPane1.setPrefSize(500, 500);
 		final Button l1 = new Button("TSA Wait Times");
 		final Button r1 = new Button("TSA Output");
 		splitPane1.getItems().addAll(l1, r1);

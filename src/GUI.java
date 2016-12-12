@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.time.Clock;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.util.Arrays;
 
 import org.json.JSONException;
 
@@ -13,6 +14,11 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.StackedBarChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -27,6 +33,21 @@ import javafx.stage.Stage;
 public class GUI extends Application {
 	
 	String text = "";
+	final static String parkingA = "Garage A";
+	final static String parkingB = "Garage B";
+	final static String parkingC = "Garage C";
+	final static String parkingD = "Garage D";
+	final static String parkingEF = "Garage EF";
+	final CategoryAxis xAxis = new CategoryAxis();
+	final NumberAxis yAxis = new NumberAxis();
+	final StackedBarChart<String, Number> sbc = new StackedBarChart<String, Number> (xAxis, yAxis);
+    final XYChart.Series<String, Number> series1 =
+            new XYChart.Series<String, Number>();
+    final XYChart.Series<String, Number> series2 =
+            new XYChart.Series<String, Number>();
+    final XYChart.Series<String, Number> series3 =
+            new XYChart.Series<String, Number>();
+	
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -167,9 +188,60 @@ public class GUI extends Application {
 	    
 	    Text garageText = new Text();
 		garageText.setText("Parking Availability at Philadelphia Airport");
-		
 		garage.getChildren().add(garageText);
 		
+//		primaryStage.setScene(new Scene(root, 600, 600));
+//	    primaryStage.show();
+	    
+	    
+	   
+	    
+	    
+        primaryStage.setTitle("Current PHL Airport Parking Availability");
+        final NumberAxis xAxis = new NumberAxis();
+        final CategoryAxis yAxis = new CategoryAxis();
+        final BarChart<Number, String> bc = new BarChart<Number, String> (xAxis, yAxis);
+        bc.setTitle("Current PHL Airport Parking Availability");
+        
+        
+        
+        //sbc.setTitle("Current PHL Airport Parking Availability");
+        xAxis.setLabel("Parking Spaces");
+        xAxis.setTickLabelRotation(90);
+//        xAxis.setCategories(FXCollections.<String>observableArrayList(
+//                Arrays.asList(parkingA, parkingB, parkingC, parkingD, parkingEF)));
+        yAxis.setLabel("Garage Name");
+        
+        series1.setName("Regular Available");
+        series1.getData().add(new XYChart.Data<String, Number>(parkingA, 20));
+        series1.getData().add(new XYChart.Data<String, Number>(parkingB, 10));
+        series1.getData().add(new XYChart.Data<String, Number>(parkingC, 5));
+        series1.getData().add(new XYChart.Data<String, Number>(parkingD, 30));
+        series1.getData().add(new XYChart.Data<String, Number>(parkingEF, 10));
+        
+        series2.setName("Handicap Available");
+        series2.getData().add(new XYChart.Data<String, Number>(parkingA, 30));
+        series2.getData().add(new XYChart.Data<String, Number>(parkingB, 70));
+        series2.getData().add(new XYChart.Data<String, Number>(parkingC, 5));
+        series2.getData().add(new XYChart.Data<String, Number>(parkingD, 30));
+        series2.getData().add(new XYChart.Data<String, Number>(parkingEF, 20));
+        
+        series3.setName("Used");
+        series3.getData().add(new XYChart.Data<String, Number>(parkingA, 50));
+        series3.getData().add(new XYChart.Data<String, Number>(parkingB, 20));
+        series3.getData().add(new XYChart.Data<String, Number>(parkingC, 90));
+        series3.getData().add(new XYChart.Data<String, Number>(parkingD, 30));
+        series3.getData().add(new XYChart.Data<String, Number>(parkingEF, 70));
+        
+        Scene scene = new Scene(sbc, 500, 500);
+        sbc.getData().addAll(series1, series2, series3);
+        garage.getChildren().add(sbc);
+        
+        
+        
+//        primaryStage.setScene(scene);
+//        primaryStage.show();
+        
 		primaryStage.setScene(new Scene(root, 600, 600));
 	    primaryStage.show();
 		
