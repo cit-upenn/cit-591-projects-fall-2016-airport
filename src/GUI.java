@@ -229,7 +229,8 @@ public class GUI extends Application {
         final BarChart<Number, String> bc = new BarChart<Number, String> (xAxis, yAxis);
         bc.setTitle("Current PHL Airport Parking Availability");
         
-        
+        GarageCaller gc = new GarageCaller();
+        gc.getGarages().get(0);
         
         //sbc.setTitle("Current PHL Airport Parking Availability");
         xAxis.setLabel("Parking Spaces");
