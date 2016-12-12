@@ -20,6 +20,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -116,6 +117,8 @@ public class GUI extends Application {
 		DatePicker calendar = new DatePicker();
 		calendar.setValue(LocalDate.now());
 		
+		HBox enterTime = new HBox();
+		
 		final ComboBox flightHour = new ComboBox();
 		flightHour.getItems().addAll("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12") ;
 		
@@ -142,6 +145,7 @@ public class GUI extends Application {
 		final ComboBox flightAMPM = new ComboBox();
 		
 		flightAMPM.getItems().addAll("AM", "PM") ;
+		enterTime.getChildren().addAll(flightHour, flightMin, flightAMPM);
 		
 		
 		//Insert button for searching flight information
@@ -183,7 +187,7 @@ public class GUI extends Application {
 			
 		});
 
-		wait.getChildren().addAll(waitText, radioDepart, radioArrive, datePrompt, calendar, flightHour, flightMin, flightAMPM, checkWait, response) ;
+		wait.getChildren().addAll(waitText, radioDepart, radioArrive, datePrompt, calendar, enterTime, checkWait, response) ;
 		
 		
 		
