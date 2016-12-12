@@ -1,5 +1,6 @@
 package src;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.time.Clock;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -110,13 +111,38 @@ public class GUI extends Application {
 		
 		//Put in the datetime object
 		Text datePrompt = new Text();
-		datePrompt.setText("Please select the date of your flight: ");
+		datePrompt.setText("Please select the date and time of your flight: ");
 		
 		DatePicker calendar = new DatePicker();
 		calendar.setValue(LocalDate.now());
 		
+		final ComboBox flightHour = new ComboBox();
+		flightHour.getItems().addAll("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12") ;
 		
-		Clock clock;
+		final ComboBox flightMin = new ComboBox();
+		String comboMin = "";
+		
+		DecimalFormat dec = new DecimalFormat("00");
+		for(int i = 0; i < 60; i++){
+			
+			
+			
+			/*String tempMin = "";
+			if (i < 10){
+				tempMin = dec.format(i) + ", ";
+			}
+			else if(i == 59){tempMin = Integer.toString(i);}
+			else{tempMin = i + ", ";}
+			
+			comboMin = comboMin + tempMin ;*/
+		}
+		
+		flightMin.getItems().addAll(comboMin) ;
+		
+		final ComboBox flightAMPM = new ComboBox();
+		
+		flightAMPM.getItems().addAll("AM", "PM") ;
+		
 		
 		//Insert button for searching flight information
 		Button checkWait = new Button();
@@ -157,7 +183,7 @@ public class GUI extends Application {
 			
 		});
 
-		wait.getChildren().addAll(waitText, radioDepart, radioArrive, datePrompt, calendar, checkWait, response) ;
+		wait.getChildren().addAll(waitText, radioDepart, radioArrive, datePrompt, calendar, flightHour, flightMin, flightAMPM, checkWait, response) ;
 		
 		
 		
