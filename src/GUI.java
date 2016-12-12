@@ -39,6 +39,7 @@ public class GUI extends Application {
 	final static String parkingC = "Garage C";
 	final static String parkingD = "Garage D";
 	final static String parkingEF = "Garage EF";
+	final static String parkingEconomy = "Economy";
 	final CategoryAxis xAxis = new CategoryAxis();
 	final NumberAxis yAxis = new NumberAxis();
 	final StackedBarChart<String, Number> sbc = new StackedBarChart<String, Number> (xAxis, yAxis);
@@ -230,7 +231,6 @@ public class GUI extends Application {
         bc.setTitle("Current PHL Airport Parking Availability");
         
         GarageCaller gc = new GarageCaller();
-        gc.getGarages().get(0);
         
         //sbc.setTitle("Current PHL Airport Parking Availability");
         xAxis.setLabel("Parking Spaces");
@@ -240,27 +240,30 @@ public class GUI extends Application {
         yAxis.setLabel("Garage Name");
         
         series1.setName("Regular Available");
-        series1.getData().add(new XYChart.Data<String, Number>(parkingA, 20));
-        series1.getData().add(new XYChart.Data<String, Number>(parkingB, 10));
-        series1.getData().add(new XYChart.Data<String, Number>(parkingC, 5));
-        series1.getData().add(new XYChart.Data<String, Number>(parkingD, 30));
-        series1.getData().add(new XYChart.Data<String, Number>(parkingEF, 10));
+        series1.getData().add(new XYChart.Data<String, Number>(parkingA, gc.getGarages().get(0).getAvailSpaces()));
+        series1.getData().add(new XYChart.Data<String, Number>(parkingB, gc.getGarages().get(1).getAvailSpaces()));
+        series1.getData().add(new XYChart.Data<String, Number>(parkingC, gc.getGarages().get(2).getAvailSpaces()));
+        series1.getData().add(new XYChart.Data<String, Number>(parkingD, gc.getGarages().get(3).getAvailSpaces()));
+        series1.getData().add(new XYChart.Data<String, Number>(parkingEF, gc.getGarages().get(4).getAvailSpaces()));
+        series1.getData().add(new XYChart.Data<String, Number>(parkingEconomy, gc.getGarages().get(5).getAvailSpaces()));
         
         series2.setName("Handicap Available");
-        series2.getData().add(new XYChart.Data<String, Number>(parkingA, 30));
-        series2.getData().add(new XYChart.Data<String, Number>(parkingB, 70));
-        series2.getData().add(new XYChart.Data<String, Number>(parkingC, 5));
-        series2.getData().add(new XYChart.Data<String, Number>(parkingD, 30));
-        series2.getData().add(new XYChart.Data<String, Number>(parkingEF, 20));
+        series2.getData().add(new XYChart.Data<String, Number>(parkingA, gc.getGarages().get(0).getAdaSpaces()));
+        series2.getData().add(new XYChart.Data<String, Number>(parkingB, gc.getGarages().get(1).getAdaSpaces()));
+        series2.getData().add(new XYChart.Data<String, Number>(parkingC, gc.getGarages().get(2).getAdaSpaces()));
+        series2.getData().add(new XYChart.Data<String, Number>(parkingD, gc.getGarages().get(3).getAdaSpaces()));
+        series2.getData().add(new XYChart.Data<String, Number>(parkingEF, gc.getGarages().get(4).getAdaSpaces()));
+        series2.getData().add(new XYChart.Data<String, Number>(parkingEconomy, gc.getGarages().get(5).getAdaSpaces()));
         
         series3.setName("Used");
-        series3.getData().add(new XYChart.Data<String, Number>(parkingA, 50));
-        series3.getData().add(new XYChart.Data<String, Number>(parkingB, 20));
-        series3.getData().add(new XYChart.Data<String, Number>(parkingC, 90));
-        series3.getData().add(new XYChart.Data<String, Number>(parkingD, 30));
-        series3.getData().add(new XYChart.Data<String, Number>(parkingEF, 70));
+        series3.getData().add(new XYChart.Data<String, Number>(parkingA, gc.getGarages().get(0).getUsedSpaces()));
+        series3.getData().add(new XYChart.Data<String, Number>(parkingB, gc.getGarages().get(1).getUsedSpaces()));
+        series3.getData().add(new XYChart.Data<String, Number>(parkingC, gc.getGarages().get(2).getUsedSpaces()));
+        series3.getData().add(new XYChart.Data<String, Number>(parkingD, gc.getGarages().get(3).getUsedSpaces()));
+        series3.getData().add(new XYChart.Data<String, Number>(parkingEF, gc.getGarages().get(4).getUsedSpaces()));
+        series3.getData().add(new XYChart.Data<String, Number>(parkingEconomy, gc.getGarages().get(5).getUsedSpaces()));
         
-        Scene scene = new Scene(sbc, 500, 500);
+        Scene scene = new Scene(sbc, 500, 300);
         sbc.getData().addAll(series1, series2, series3);
         garage.getChildren().add(sbc);
         

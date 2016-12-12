@@ -63,6 +63,13 @@ public class Garage {
 	public int getTotalSpaces() {
 		return totalSpaces;
 	}
+	
+	/**
+	 * @return used spaces
+	 */
+	public int getUsedSpaces() {
+		return totalSpaces - availSpaces - adaSpaces;
+	}
 
 	
 
