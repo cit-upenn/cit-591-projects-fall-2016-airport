@@ -25,6 +25,7 @@ public class FlightDelayAnalyzer {
 	 * Calculates the average delay of all flights leaving in the same month, on the same day of the week, and within the same hour
 	 * @return the average flight delay
 	 */
+	//What if value is negative??
 	public double calculateAverageDelay() {
 		double sum = 0;
 		double average = 0;

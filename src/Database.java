@@ -34,7 +34,11 @@ public class Database {
 	
 	
 	/**
-	 * Constructor.
+	 * Constructor for the database class
+	 * @param dayOfWeek int value for the day of week. Values start at 1, such that 1 = Monday and 7 = Sunday
+	 * @param month int value for month, starting at 1
+	 * @param time on 24 hr clock
+	 * @param dayOfMonth date
 	 */
 	public Database(int dayOfWeek, int month, int time, int dayOfMonth){
 		//dayOfWeek is an integer index for the weekday, where 1 = Monday and 7 = Sunday
@@ -170,7 +174,7 @@ public class Database {
 			sqlQuery = "select * from customs_wait_times where arrival_date like \'%" + dayOfMonth + "-" + strMonth  + "%\'";
 
 			// Execute it
-			//System.out.println("Executing query... " + sqlQuery);
+			System.out.println("Executing query... " + sqlQuery);
 			ResultSet rs = stmt.executeQuery(sqlQuery);
 
 			// Iterate over rs to retrieve results

@@ -1,5 +1,8 @@
 package src;
 import java.io.IOException;
+import java.time.Clock;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 
 import org.json.JSONException;
 
@@ -12,6 +15,9 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -87,10 +93,73 @@ public class GUI extends Application {
 		wait.setPadding(new Insets(10));
 	    wait.setSpacing(8);
 	    
+	    //Setup the departing/arriving radio buttons
 		Text waitText = new Text();
 		waitText.setText("Are you arriving or departing from Philadelphia Airport?");
 		
-		wait.getChildren().add(waitText);
+		ToggleGroup toggle = new ToggleGroup();
+		
+		RadioButton radioDepart = new RadioButton();
+		radioDepart.setText("Departing");
+		
+		RadioButton radioArrive = new RadioButton();
+		radioArrive.setText("Arriving");
+		
+		radioDepart.setToggleGroup(toggle);
+		radioArrive.setToggleGroup(toggle);
+		
+		//Put in the datetime object
+		Text datePrompt = new Text();
+		datePrompt.setText("Please select the date of your flight: ");
+		
+		DatePicker calendar = new DatePicker();
+		calendar.setValue(LocalDate.now());
+		
+		
+		Clock clock;
+		
+		//Insert button for searching flight information
+		Button checkWait = new Button();
+		checkWait.setText("Check Wait");
+		
+		Text response = new Text();
+		checkWait.setOnAction((click)->{
+			LocalDate date = calendar.getValue();
+			int month = date.getMonthValue();
+			int day = date.getDayOfMonth();
+			int year = date.getYear();
+			int dayOfWeek = date.getDayOfWeek().getValue();
+			
+			Database db = new Database(dayOfWeek, month, 1244, day);
+
+			
+			if(radioDepart.isSelected()){
+				FlightDelayAnalyzer delays = new FlightDelayAnalyzer(db.pullFlightDelayData());
+				double flightDelay = delays.calculateAverageDelay();
+				if(flightDelay > 0){
+					response.setText("Expected flight delay: " + flightDelay + " min");
+				}
+				else if(flightDelay < 0){
+					response.setText("Flight expected to arrive" + flightDelay + " min early.");
+				}
+				else{response.setText("No delay expected.");}
+				
+			}
+			
+			else if(radioArrive.isSelected()){
+				CustomsWaitAnalyzer customs = new CustomsWaitAnalyzer(db.queryCustomsData());
+				double customsWait = customs.averageWait();
+				if(customsWait > 0){
+					response.setText("Average expected wait at Customs: " + customs.averageWait() + " min");
+				}
+				else{response.setText("No wait expected at Customs.");}
+			}
+			
+		});
+
+		wait.getChildren().addAll(waitText, radioDepart, radioArrive, datePrompt, calendar, checkWait, response) ;
+		
+		
 		
 		//Garage VBox at the bottom
 		garage.setPadding(new Insets(10));

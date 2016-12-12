@@ -7,7 +7,6 @@ public class CustomsWaitAnalyzer {
 	private ArrayList<Integer> waitTimes;
 	private double avgWait;
 	private double waitCount;
-	//private Database testDB = new Database();
 	
 	public CustomsWaitAnalyzer(ArrayList<Integer> waitTimes){
 		this.waitTimes = waitTimes;
@@ -22,6 +21,7 @@ public class CustomsWaitAnalyzer {
 		}
 		
 		avgWait = totalWait / waitCount ;
+		avgWait = Math.round(avgWait) ;
 		return avgWait;
 	}
 }
