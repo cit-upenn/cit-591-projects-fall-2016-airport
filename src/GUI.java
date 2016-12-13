@@ -153,31 +153,19 @@ public class GUI extends Application {
 		HBox enterTime = new HBox();
 		
 		final ComboBox flightHour = new ComboBox();
-		flightHour.getItems().addAll("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12") ;
+		flightHour.getItems().addAll("Hr","1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12") ;
+		flightHour.getSelectionModel().selectFirst();
 		
 		final ComboBox flightMin = new ComboBox();
-		String comboMin = "";
-		
-		DecimalFormat dec = new DecimalFormat("00");
-		for(int i = 0; i < 60; i++){
-			
-			
-			
-			/*String tempMin = "";
-			if (i < 10){
-				tempMin = dec.format(i) + ", ";
-			}
-			else if(i == 59){tempMin = Integer.toString(i);}
-			else{tempMin = i + ", ";}
-			
-			comboMin = comboMin + tempMin ;*/
-		}
-		
-		flightMin.getItems().addAll(comboMin) ;
+		flightMin.getItems().addAll("Min", "00","01","02","03","04","05","06","07","08","09", "11","12","13","14","15","16","17", "18", "19", "20",
+				"21","22","23","24","25","26","27","28","29", "30","31","32","33","34","35","36","37","38","39", "40","41","42","43","44","45",
+				"46", "47", "48", "49", "50","51","52","53","54","55","56","57","58","59") ;
+		flightMin.getSelectionModel().selectFirst();
 		
 		final ComboBox flightAMPM = new ComboBox();
-		
 		flightAMPM.getItems().addAll("AM", "PM") ;
+		flightAMPM.getSelectionModel().selectFirst();
+		
 		enterTime.getChildren().addAll(flightHour, flightMin, flightAMPM);
 		
 		
@@ -192,6 +180,9 @@ public class GUI extends Application {
 			int day = date.getDayOfMonth();
 			int year = date.getYear();
 			int dayOfWeek = date.getDayOfWeek().getValue();
+			int hour = (int) flightHour.getValue();
+			int min = (int) flightHour.getValue();
+			String amPM = (String) flightHour.getValue();
 			
 			Database db = new Database(dayOfWeek, month, 1244, day);
 
@@ -205,8 +196,7 @@ public class GUI extends Application {
 				else if(flightDelay < 0){
 					response.setText("Flight expected to arrive" + flightDelay + " min early.");
 				}
-				else{response.setText("No delay expected.");}
-				
+				else{response.setText("No delay expected.");}	
 			}
 			
 			else if(radioArrive.isSelected()){
@@ -217,6 +207,7 @@ public class GUI extends Application {
 				}
 				else{response.setText("No wait expected at Customs.");}
 			}
+			
 			
 		});
 
@@ -234,10 +225,6 @@ public class GUI extends Application {
 		
 //		primaryStage.setScene(new Scene(root, 600, 600));
 //	    primaryStage.show();
-	    
-	    
-	   
-	    
 	    
         primaryStage.setTitle("Current PHL Airport Parking Availability");
         final NumberAxis xAxis = new NumberAxis();
