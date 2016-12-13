@@ -5,6 +5,7 @@ import java.time.Clock;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Iterator;
 
 import org.json.JSONException;
 
@@ -94,17 +95,27 @@ public class GUI extends Application {
             	TSACaller caller = new TSACaller();
                 try {
                 	if (caller.getAllCheckPoint().containsKey(checkpointSelection.getValue())) {
-                		text = Integer.toString(caller.getWaitTime(checkpointSelection.getValue())) + " minutes";
+                		text = checkpointSelection.getValue() + ": " + Integer.toString(caller.getWaitTime(checkpointSelection.getValue())) + " minutes";
+					} else if (checkpointSelection.getValue().equals("All Checkpoints")) {
+						StringBuilder all = new StringBuilder();
+						Iterator<String> it = caller.getAllCheckPoint().keySet().iterator(); 
+						while(it.hasNext()) {
+							String key = it.next();
+							int wait = caller.getAllCheckPoint().get(key);
+							text = key + ": " + Integer.toString(wait) + "minutes\n";
+							all.append(text);
+						}
+						
+						text = all.toString();
 					} else {
 						text = "Not available";
 					}
                 
             		tsaOutput.setText(text);
- 
-                	
-					System.out.println(text);
+
 				} catch (JSONException | IOException e) {
 					// TODO Auto-generated catch block
+					System.out.println("Could not call API! Connection problem!");
 					e.printStackTrace();
 				}
             }
