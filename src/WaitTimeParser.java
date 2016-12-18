@@ -69,13 +69,13 @@ public class WaitTimeParser {
 					break;
 			case 6: wait = 53;
 					break;
-//			case 7:
-//					break;
-//			case 8:
-//					break;
-//			case 9:
-//					break;
-			default: wait = 1000;
+			case 7: wait = 68;
+					break;
+			case 8: wait = 83;
+					break;
+			case 9: wait = 98;
+					break;
+			default: wait = 100;
 					break;
 		}
 		WaitTime waitTime = new WaitTime(checkPoint, createdTime, wait);

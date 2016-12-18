@@ -101,6 +101,7 @@ public class GUI extends Application {
 						Iterator<String> it = caller.getAllCheckPoint().keySet().iterator(); 
 						while(it.hasNext()) {
 							String key = it.next();
+							if (key == "N/A") continue;
 							int wait = caller.getAllCheckPoint().get(key);
 							text = key + ": " + Integer.toString(wait) + "minutes\n";
 							all.append(text);
@@ -265,7 +266,7 @@ public class GUI extends Application {
         series3.getData().add(new XYChart.Data<String, Number>(parkingEF, gc.getGarages().get(4).getUsedSpaces()));
         series3.getData().add(new XYChart.Data<String, Number>(parkingEconomy, gc.getGarages().get(5).getUsedSpaces()));
         
-        Scene scene = new Scene(sbc, 500, 300);
+
         sbc.getData().addAll(series1, series2, series3);
         garage.getChildren().add(sbc);
         
