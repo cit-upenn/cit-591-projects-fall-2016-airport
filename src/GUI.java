@@ -267,7 +267,7 @@ public class GUI extends Application {
         series1.getData().add(new XYChart.Data<String, Number>(parkingEF, gc.getGarages().get(4).getUsedSpaces()));
         series1.getData().add(new XYChart.Data<String, Number>(parkingEconomy, gc.getGarages().get(5).getUsedSpaces()));
         
-        series2.setName("Handicap Available                      ");
+        series2.setName("Handicap Available                     ");
         series2.getData().add(new XYChart.Data<String, Number>(parkingA, gc.getGarages().get(0).getAdaSpaces()));
         series2.getData().add(new XYChart.Data<String, Number>(parkingB, gc.getGarages().get(1).getAdaSpaces()));
         series2.getData().add(new XYChart.Data<String, Number>(parkingC, gc.getGarages().get(2).getAdaSpaces()));
