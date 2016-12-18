@@ -195,8 +195,16 @@ public class GUI extends Application {
 			int day = date.getDayOfMonth();
 			int year = date.getYear();
 			int dayOfWeek = date.getDayOfWeek().getValue();
-			int hour = Integer.parseInt(flightHour.getValue());
-			int min = Integer.parseInt(flightMin.getValue());
+			int hour = 0;
+			int min = 0;
+			
+			try{
+				hour = Integer.parseInt(flightHour.getValue());
+				min = Integer.parseInt(flightMin.getValue());
+			} catch(NumberFormatException nfe){
+				response.setText("Please enter numerical values for hour and minute.");
+			}
+			
 			if(flightAMPM.getValue() == "PM"){
 				hour = hour + 12;
 			}
