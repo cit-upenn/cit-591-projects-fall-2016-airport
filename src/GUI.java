@@ -131,6 +131,7 @@ public class GUI extends Application {
 					// TODO Auto-generated catch block
 					System.out.println("Could not call API! Connection problem!");
 					e.printStackTrace();
+					tsaOutput.setText("Internet connection problem");
 				}
 			}
 		});
