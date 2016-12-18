@@ -70,7 +70,7 @@ public class GUI extends Application {
 		tsa.setPadding(new Insets(10));
 	    tsa.setSpacing(8);
 		Text tsaText = new Text();
-		tsaText.setText("Check TSA Security Wait Time at:");
+		tsaText.setText("Check Current TSA Security Wait Time at:");
 		
 		ObservableList<String> options = FXCollections.observableArrayList(
 				"All Checkpoints",
@@ -157,7 +157,7 @@ public class GUI extends Application {
 		flightHour.getSelectionModel().selectFirst();
 		
 		final ComboBox<String> flightMin = new ComboBox();
-		flightMin.getItems().addAll("Min", "00","01","02","03","04","05","06","07","08","09", "11","12","13","14","15","16","17", "18", "19", "20",
+		flightMin.getItems().addAll("Min", "00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17", "18", "19", "20",
 				"21","22","23","24","25","26","27","28","29", "30","31","32","33","34","35","36","37","38","39", "40","41","42","43","44","45",
 				"46", "47", "48", "49", "50","51","52","53","54","55","56","57","58","59") ;
 		flightMin.getSelectionModel().selectFirst();
@@ -244,15 +244,15 @@ public class GUI extends Application {
 //                Arrays.asList(parkingA, parkingB, parkingC, parkingD, parkingEF)));
         yAxis.setLabel("Garage Name");
         
-        series1.setName("Regular Available");
-        series1.getData().add(new XYChart.Data<String, Number>(parkingA, gc.getGarages().get(0).getAvailSpaces()));
-        series1.getData().add(new XYChart.Data<String, Number>(parkingB, gc.getGarages().get(1).getAvailSpaces()));
-        series1.getData().add(new XYChart.Data<String, Number>(parkingC, gc.getGarages().get(2).getAvailSpaces()));
-        series1.getData().add(new XYChart.Data<String, Number>(parkingD, gc.getGarages().get(3).getAvailSpaces()));
-        series1.getData().add(new XYChart.Data<String, Number>(parkingEF, gc.getGarages().get(4).getAvailSpaces()));
-        series1.getData().add(new XYChart.Data<String, Number>(parkingEconomy, gc.getGarages().get(5).getAvailSpaces()));
+        series1.setName("Used Spaces");
+        series1.getData().add(new XYChart.Data<String, Number>(parkingA, gc.getGarages().get(0).getUsedSpaces()));
+        series1.getData().add(new XYChart.Data<String, Number>(parkingB, gc.getGarages().get(1).getUsedSpaces()));
+        series1.getData().add(new XYChart.Data<String, Number>(parkingC, gc.getGarages().get(2).getUsedSpaces()));
+        series1.getData().add(new XYChart.Data<String, Number>(parkingD, gc.getGarages().get(3).getUsedSpaces()));
+        series1.getData().add(new XYChart.Data<String, Number>(parkingEF, gc.getGarages().get(4).getUsedSpaces()));
+        series1.getData().add(new XYChart.Data<String, Number>(parkingEconomy, gc.getGarages().get(5).getUsedSpaces()));
         
-        series2.setName("Handicap Available");
+        series2.setName("Handicap Available                         ");
         series2.getData().add(new XYChart.Data<String, Number>(parkingA, gc.getGarages().get(0).getAdaSpaces()));
         series2.getData().add(new XYChart.Data<String, Number>(parkingB, gc.getGarages().get(1).getAdaSpaces()));
         series2.getData().add(new XYChart.Data<String, Number>(parkingC, gc.getGarages().get(2).getAdaSpaces()));
@@ -260,24 +260,25 @@ public class GUI extends Application {
         series2.getData().add(new XYChart.Data<String, Number>(parkingEF, gc.getGarages().get(4).getAdaSpaces()));
         series2.getData().add(new XYChart.Data<String, Number>(parkingEconomy, gc.getGarages().get(5).getAdaSpaces()));
         
-        series3.setName("Used");
-        series3.getData().add(new XYChart.Data<String, Number>(parkingA, gc.getGarages().get(0).getUsedSpaces()));
-        series3.getData().add(new XYChart.Data<String, Number>(parkingB, gc.getGarages().get(1).getUsedSpaces()));
-        series3.getData().add(new XYChart.Data<String, Number>(parkingC, gc.getGarages().get(2).getUsedSpaces()));
-        series3.getData().add(new XYChart.Data<String, Number>(parkingD, gc.getGarages().get(3).getUsedSpaces()));
-        series3.getData().add(new XYChart.Data<String, Number>(parkingEF, gc.getGarages().get(4).getUsedSpaces()));
-        series3.getData().add(new XYChart.Data<String, Number>(parkingEconomy, gc.getGarages().get(5).getUsedSpaces()));
+        series3.setName("Regular Available");
+        series3.getData().add(new XYChart.Data<String, Number>(parkingA, gc.getGarages().get(0).getAvailSpaces()));
+        series3.getData().add(new XYChart.Data<String, Number>(parkingB, gc.getGarages().get(1).getAvailSpaces()));
+        series3.getData().add(new XYChart.Data<String, Number>(parkingC, gc.getGarages().get(2).getAvailSpaces()));
+        series3.getData().add(new XYChart.Data<String, Number>(parkingD, gc.getGarages().get(3).getAvailSpaces()));
+        series3.getData().add(new XYChart.Data<String, Number>(parkingEF, gc.getGarages().get(4).getAvailSpaces()));
+        series3.getData().add(new XYChart.Data<String, Number>(parkingEconomy, gc.getGarages().get(5).getAvailSpaces()));
+        
+
         
         //Scene scene = new Scene(sbc, 500, 50);
         sbc.getData().addAll(series1, series2, series3);
         garage.getChildren().add(sbc);
         
         
-        
 //        primaryStage.setScene(scene);
 //        primaryStage.show();
         
-		primaryStage.setScene(new Scene(root, 600, 600));
+		primaryStage.setScene(new Scene(root, 700, 700));
 	    primaryStage.show();
 		
 

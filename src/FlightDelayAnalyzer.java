@@ -39,17 +39,4 @@ public class FlightDelayAnalyzer {
 		System.out.println(average);
 		return average;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

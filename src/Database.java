@@ -55,15 +55,25 @@ public class Database {
 	 * Converts the integer month value to a three-letter string for querying the Customs Wait db
 	 * Method is only necessary in cases where the customs wait times are needed
 	 */
-	private void convertMonth(){
+	public void convertMonth(){
 		String[] months = {"JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"} ;
 		this.strMonth = months[this.month - 1] ;
 	}
 	
 	/**
+	 * Getter method for month.
+	 * @return month as a string
+	 */
+	public String getMonth() {
+		return strMonth;
+	}
+	
+	
+	
+	/**
 	 * Takes the input time and uses it to find the lower and upper time bounds for querying the database.
 	 */
-	private void convertTime(){
+	public void convertTime(){
 		//use integer division to find the hour/minute and lower bound
 		int inputHour = time / 100;
 		int inputMin = time - (inputHour * 100);
@@ -97,6 +107,21 @@ public class Database {
 		
 	}
 	
+	/**
+	 * Getter method for lowerTime.
+	 * @return lower bound of time input.
+	 */
+	public int getLowerTime() {
+		return lowerTime;
+	}
+	
+	/**
+	 * Getter method for upperTime.
+	 * @return upper bound of time input.
+	 */
+	public int getUpperTime() {
+		return upperTime;
+	}
 	
 	/**
 	 * Connects to database, querys database based on input flight time and date.
@@ -159,6 +184,11 @@ public class Database {
 		}
 		return delays;
 	}
+	
+	
+	
+	
+	
 	
 	public ArrayList<Integer> queryCustomsData(){
 		convertMonth();
