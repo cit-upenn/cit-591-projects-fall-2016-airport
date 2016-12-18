@@ -83,6 +83,7 @@ public class GUI extends Application {
 	    		"Checkpoint F"
 		);
 		ComboBox<String> checkpointSelection = new ComboBox<String>(options);
+		checkpointSelection.getSelectionModel().selectFirst();
 		
 		Button checkTSA = new Button();
 		Text tsaOutput = new Text();
