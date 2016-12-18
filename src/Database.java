@@ -212,8 +212,5 @@ public class Database {
 		return customsWait;
 
 	}
-
-
-
-
+	
 }

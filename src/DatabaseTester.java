@@ -6,7 +6,6 @@ import java.util.Scanner;
 /**
  * Tester class for testing queried data. Precursor to our GUI.
  * @author Brian Z. Sokas
- *
  */
 public class DatabaseTester {
 
