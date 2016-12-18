@@ -43,35 +43,4 @@ public class RestCaller {
 		return json.getJSONArray(key);
 	}
 
-//  public static void main(String[] args) throws IOException, JSONException {
-//    JSONObject json1 = readJsonFromUrl("https://api.phila.gov/airport-parking/v1/");
-//    JSONObject json2 = readJsonFromUrl("http://apps.tsa.dhs.gov/MyTSAWebService/GetTSOWaitTimes.ashx?ap=PHL&output=json");
-//    JSONArray garages = json1.getJSONArray("garages");
-//    JSONArray waitTimes = json2.getJSONArray("WaitTimes");
-	
-//    WaitTimeParser parser1 = new WaitTimeParser(waitTimes);
-//    GarageJSONParser parser2 = new GarageJSONParser(garages);
-//    WaitTimeCollection col1 = new WaitTimeCollection(parser1);
-//    GarageCollection col2 = new GarageCollection(parser2);
-//    DataAnalyzer analyzer = new DataAnalyzer(parser1, parser2);
-//    System.out.println(analyzer.getTimeAtCheckpoint());
-//    System.out.println("\n");
-//    for (int i = 0; i < col1.getWaitTimes().size(); i++) {
-//    	System.out.println(col1.getWaitTimes().get(i).getCheckPoint());
-//    	System.out.println(col1.getWaitTimes().get(i).getCreatedTime());
-//    	System.out.println(col1.getWaitTimes().get(i).getWait());
-//    	System.out.println("\n");
-//    }
-//    System.out.println("Garages' information: \n");
-//    for (int i = 0; i < col2.getGarages().size(); i++) {
-//    	System.out.println(col2.getGarages().get(i).getName());
-//    	System.out.println(col2.getGarages().get(i).getLatitude());
-//    	System.out.println(col2.getGarages().get(i).getLongitude());
-//    	System.out.println(col2.getGarages().get(i).getAdaSpaces());
-//    	System.out.println(col2.getGarages().get(i).getAvailSpaces());
-//    	System.out.println(col2.getGarages().get(i).getTotalSpaces());
-//    	System.out.println("\n");
-//    }
-//    
-//  }
 }
