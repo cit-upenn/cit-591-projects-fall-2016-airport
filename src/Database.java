@@ -14,7 +14,7 @@ import java.sql.DatabaseMetaData;
  *
  */
 public class Database {
-	
+
 	// Database information and credentials
 	Connection conn = null;
 	Statement stmt = null;
@@ -31,8 +31,8 @@ public class Database {
 	private int dayOfMonth;
 	private ArrayList<Integer> delays = new ArrayList<Integer>();
 	private ArrayList<Integer> customsWait = new ArrayList<Integer>();
-	
-	
+
+
 	/**
 	 * Constructor for the database class
 	 * @param dayOfWeek int value for the day of week. Values start at 1, such that 1 = Monday and 7 = Sunday
@@ -50,16 +50,16 @@ public class Database {
 		//Day of month
 		this.dayOfMonth = dayOfMonth;
 	}
-	
+
 	/**
-	 * Converts the integer month value to a three-letter string for querying the Customs Wait db
+	 * Converts the integer month value to a three-letter string for querying the database
 	 * Method is only necessary in cases where the customs wait times are needed
 	 */
 	public void convertMonth(){
 		String[] months = {"JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"} ;
 		this.strMonth = months[this.month - 1] ;
 	}
-	
+
 	/**
 	 * Getter method for month.
 	 * @return month as a string
@@ -79,7 +79,7 @@ public class Database {
 		int inputMin = time - (inputHour * 100);
 		int setHour = 0;
 		int setMin = 0;
-		
+
 		//if minute is less than 30, the lower bound will be in the previous hour, so account for that
 		if(inputMin < 30){
 			setMin = 60 - (30-inputMin);
@@ -88,10 +88,10 @@ public class Database {
 		else{
 			setHour = inputHour * 100;
 			setMin = inputMin - 30; }
-		
+
 		//Set lowerTime and upperTime using the lowerTime
 		lowerTime = setHour + setMin ;
-		
+
 		//Check to make sure the minute for the upper bound is right
 		if(inputMin > 30){
 			setMin = 30 - (60 - inputMin);
@@ -100,11 +100,11 @@ public class Database {
 		else{
 			setHour = inputHour * 100;
 			setMin = inputMin + 30;
-			}
-		
+		}
+
 		//set the uppertime
 		upperTime = setHour + setMin;
-		
+
 	}
 	
 	/**
@@ -123,13 +123,14 @@ public class Database {
 		return upperTime;
 	}
 	
+
 	/**
 	 * Connects to database, querys database based on input flight time and date.
 	 * @return ArrayList of flight delays for a specific month, day of week, and time frame
 	 */
 	public ArrayList<Integer> pullFlightDelayData() {
 		convertTime();
-		
+
 		try {
 			// Standard setup
 			DriverManager.registerDriver (new oracle.jdbc.driver.OracleDriver());
@@ -155,10 +156,8 @@ public class Database {
 				String carr = rs.getString("CARRIER");
 				int delayTime = rs.getInt("DEP_DELAY");
 				delays.add(delayTime);
-//				System.out.println("Month: " + month + "   " + "Day of Week: " + dayOfWeek + "   " + "Depart Time: " + departTime + 
-//						"   " + "Delay: " + delayTime);
 			}
-			
+
 			// Clean-up time
 			rs.close();
 			stmt.close();
@@ -174,7 +173,7 @@ public class Database {
 					stmt.close();
 			} catch (SQLException se2) {
 			}// nothing we can do
-			
+
 			try {
 				if (conn != null)
 					conn.close();
@@ -184,15 +183,15 @@ public class Database {
 		}
 		return delays;
 	}
-	
-	
-	
-	
-	
-	
+
+
+	/**
+	 * Creates query string and uses it to query the Customs Wait Data table in the remote database
+	 * @return ArrayList customsWait, the list of customs wait time for the particular queried day
+	 */
 	public ArrayList<Integer> queryCustomsData(){
 		convertMonth();
-		
+
 		try {
 			// Standard setup
 			DriverManager.registerDriver (new oracle.jdbc.driver.OracleDriver());
@@ -213,7 +212,7 @@ public class Database {
 				int avgWaitTime = rs.getInt("AVG_WAIT");
 				customsWait.add(avgWaitTime);
 			}
-			
+
 			// Clean-up time
 			rs.close();
 			stmt.close();
@@ -229,7 +228,7 @@ public class Database {
 					stmt.close();
 			} catch (SQLException se2) {
 			}// nothing we can do
-			
+
 			try {
 				if (conn != null)
 					conn.close();
@@ -238,10 +237,7 @@ public class Database {
 			}
 		}
 		return customsWait;
-		
+
 	}
-	
-	
-	
 	
 }

@@ -11,15 +11,13 @@ public class FlightDelayAnalyzer {
 
 	
 	/**
-	 * Constructor.
+	 * Constructor. Sets the instance array list to the input list.
+	 * @param delays ArrayList of the delay data.
 	 */
 	public FlightDelayAnalyzer(ArrayList<Integer> delays) {
-		//Database db = new Database();
-		//delays = db.pullFlightDelayData(delays);
 		this.delays = delays;
 		
 	}
-	
 	
 	/**
 	 * Calculates the average delay of all flights leaving in the same month, on the same day of the week, and within the same hour
@@ -39,4 +37,5 @@ public class FlightDelayAnalyzer {
 		System.out.println(average);
 		return average;
 	}
+
 }
