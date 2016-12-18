@@ -240,10 +240,7 @@ public class GUI extends Application {
 		garageText.setText("Parking Availability at Philadelphia Airport");
 		garage.getChildren().add(garageText);
 
-		
-//		primaryStage.setScene(new Scene(root, 600, 600));
-//	    primaryStage.show();
-	    
+
         primaryStage.setTitle("Current PHL Airport Parking Availability");
         final NumberAxis xAxis = new NumberAxis();
         final CategoryAxis yAxis = new CategoryAxis();
@@ -284,14 +281,10 @@ public class GUI extends Application {
         series3.getData().add(new XYChart.Data<String, Number>(parkingEconomy, gc.getGarages().get(5).getAvailSpaces()));
         
 
-        
-        //Scene scene = new Scene(sbc, 500, 50);
         sbc.getData().addAll(series1, series2, series3);
         garage.getChildren().add(sbc);
         
         
-//        primaryStage.setScene(scene);
-//        primaryStage.show();
         
 		primaryStage.setScene(new Scene(root, 700, 700));
 	    primaryStage.show();
