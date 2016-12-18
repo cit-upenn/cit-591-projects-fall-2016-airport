@@ -38,6 +38,6 @@ public class DatabaseTester {
 			CustomsWaitAnalyzer customs = new CustomsWaitAnalyzer(db.queryCustomsData());
 			System.out.printf("Your expected wait at Customs is: %f minutes", customs.averageWait());
 		}
-
+		
 	}
 }

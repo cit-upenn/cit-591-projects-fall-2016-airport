@@ -17,7 +17,6 @@ public class FlightDelayAnalyzerTest {
 		delays = db.pullFlightDelayData();
 	}
 	
-	
 	@Test
 	public void testAverageCalculationNotNull() {
 		FlightDelayAnalyzer fda = new FlightDelayAnalyzer(delays);
