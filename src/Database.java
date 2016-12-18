@@ -51,6 +51,8 @@ public class Database {
 		this.dayOfMonth = dayOfMonth;
 	}
 
+	
+	
 	/**
 	 * Converts the integer month value to a three-letter string for querying the database
 	 * Method is only necessary in cases where the customs wait times are needed
@@ -60,6 +62,8 @@ public class Database {
 		this.strMonth = months[this.month - 1] ;
 	}
 
+	
+	
 	/**
 	 * Getter method for month.
 	 * @return month as a string
@@ -107,6 +111,8 @@ public class Database {
 
 	}
 	
+	
+	
 	/**
 	 * Getter method for lowerTime.
 	 * @return lower bound of time input.
@@ -114,6 +120,8 @@ public class Database {
 	public int getLowerTime() {
 		return lowerTime;
 	}
+	
+	
 	
 	/**
 	 * Getter method for upperTime.
@@ -124,6 +132,7 @@ public class Database {
 	}
 	
 
+	
 	/**
 	 * Connects to database, querys database based on input flight time and date.
 	 * @return ArrayList of flight delays for a specific month, day of week, and time frame
@@ -137,16 +146,17 @@ public class Database {
 			conn = DriverManager.getConnection("jdbc:oracle:thin:@//" + DB_URL + "/" + DB_NAME, USER, PASSWORD);
 			stmt = conn.createStatement();
 
-			// Build your sql string
+			// Build sql string
 			String sqlQuery;
 			sqlQuery = "SELECT * FROM FLIGHTDELAYS WHERE DAY_OF_WEEK = " + dayOfWeek 
 					+ " AND MONTH = " + month + " AND CRS_DEP_TIME > " + lowerTime + " AND CRS_DEP_TIME < " + upperTime;
 
 
-			// Execute it
+			// Execute sql string
 			System.out.println("Executing query... " + sqlQuery);
 			ResultSet rs = stmt.executeQuery(sqlQuery);
 
+			
 			// Iterate over rs to retrieve results
 			while(rs.next()) {
 				//Retrieve by column name
@@ -185,6 +195,7 @@ public class Database {
 	}
 
 
+	
 	/**
 	 * Creates query string and uses it to query the Customs Wait Data table in the remote database
 	 * @return ArrayList customsWait, the list of customs wait time for the particular queried day
@@ -237,7 +248,5 @@ public class Database {
 			}
 		}
 		return customsWait;
-
 	}
-	
 }

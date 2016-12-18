@@ -9,12 +9,14 @@ import org.junit.Test;
 public class DatabaseTest {
 	
 	private Database db;
+	private Database db2;
 	private ArrayList<Integer> flightDelays = new ArrayList<Integer>();
 	private ArrayList<Integer> customsDelays = new ArrayList<Integer>();
 	
 	@Before
 	public void setup() { 
-		db = new Database(1, 2, 910, 23);
+		db = new Database(1, 2, 1010, 23);
+		db2 = new Database(1, 2, 950, 23);
 	}
 
 	
@@ -30,7 +32,11 @@ public class DatabaseTest {
 	public void testLowerTimeBound() {
 		db.convertTime();
 		int lowerTimeValue = db.getLowerTime();
-		assertEquals(840, lowerTimeValue);
+		assertEquals(940, lowerTimeValue);
+		
+		db2.convertTime();
+		int lowerTimeValue2 = db2.getLowerTime();
+		assertEquals(920, lowerTimeValue2);
 	}
 	
 	
@@ -38,7 +44,11 @@ public class DatabaseTest {
 	public void testUpperTimeBound() {
 		db.convertTime();
 		int upperTimeValue = db.getUpperTime();
-		assertEquals(940, upperTimeValue);
+		assertEquals(1040, upperTimeValue);
+		
+		db2.convertTime();
+		int upperTimeValue2 = db2.getUpperTime();
+		assertEquals(1020, upperTimeValue2);
 	}
 	
 	

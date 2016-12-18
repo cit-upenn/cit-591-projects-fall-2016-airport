@@ -64,9 +64,8 @@ public class GarageTest {
 	
 	@Test
 	public void testUsedValue() {
-		int used = garage.getTotalSpaces() - garage.getAvailSpaces() - garage.getAdaSpaces();
-		
-		assertEquals("Total spaces should be 1200", 1070, used);
+		int used = garage.getUsedSpaces();
+		assertEquals("Used spaces should be 1070", 1070, used);
 		
 	}
 }
