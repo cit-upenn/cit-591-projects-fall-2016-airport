@@ -88,7 +88,7 @@ public class GUI extends Application {
 				"Checkpoint A-West Sec 7",
 				"Checkpoint B",
 				"Checkpoint C",
-				"Checkpoint D/E",
+				"Checkpoint D/E", 
 				"Checkpoint F"
 				);
 		ComboBox<String> checkpointSelection = new ComboBox<String>(options);
@@ -164,7 +164,8 @@ public class GUI extends Application {
 
 		DatePicker calendar = new DatePicker();
 		calendar.setValue(LocalDate.now());
-
+		
+		//Horizontal box for the hr/min/am-pm values
 		HBox enterTime = new HBox();
 
 		final ComboBox<String>flightHour = new ComboBox();
