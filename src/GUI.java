@@ -250,7 +250,7 @@ public class GUI extends Application {
 		garage.getChildren().add(garageText);
 
 
-        primaryStage.setTitle("Current PHL Airport Parking Availability");
+       
         final NumberAxis xAxis = new NumberAxis();
         final CategoryAxis yAxis = new CategoryAxis();
         final BarChart<Number, String> bc = new BarChart<Number, String> (xAxis, yAxis);
