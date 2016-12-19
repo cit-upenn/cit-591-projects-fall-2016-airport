@@ -6,33 +6,28 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import org.json.JSONException;
+import org.junit.Before;
 import org.junit.Test;
 
 public class TSACallerTest {
 	
-	TSACaller caller ;
-
-	@Test
-	public void constructorTest(){
-		Exception exception = null;
-		try{
-			caller = new TSACaller();
-		} catch(Exception ex){
-			exception = ex;
-			System.out.printf("Received error %s", exception.toString());
-		}
-		assertEquals(null, exception) ;
+	private TSACaller caller ;
+	private final static String checkpoint = "Checkpoint B";
+	
+	@Before
+	public void setup() {
+		caller = new TSACaller();
 	}
 	
 	@Test
-	public void testGetCheckpoints() throws JSONException, IOException{
-		assertNotNull(caller.getAllCheckPoint());
-	}
-	
-	@Test
-	public void testWaitA() throws JSONException, IOException{
+	public void testRestCallerNotNull() {
 		
-		assertNotNull(caller.getWaitTime("Checkpoint A-East"));
+		assertNotNull("TSACaller cannot be null", caller);
+	}
+	
+	@Test public void testGetWaitTime() throws JSONException, IOException{
+		Exception e = new Exception();
+		assertNotNull(caller.getWaitTime(checkpoint));
 	}
 
 }

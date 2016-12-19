@@ -5,12 +5,17 @@ import static org.junit.Assert.*;
 import java.io.IOException;
 
 import org.json.JSONException;
+import org.junit.Before;
 import org.junit.Test;
 
 public class GarageCallerTest {
 
-	GarageCaller gc = new GarageCaller();
+	private GarageCaller gc; 
 	
+	@Before
+	public void setup() {
+		gc = new GarageCaller();
+	}
 	@Test
 	public void testRestCallerNotNull() {
 		
