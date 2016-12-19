@@ -24,23 +24,26 @@ public class TSACallerTest {
 	
 	@Test
 	public void testGetCheckpoints(){
-		HashMap<String, Integer> testMap = null;
+		//HashMap<String, Integer> testMap = new HashMap<String, Integer>();
+		Exception exception = null;
 		try{
-			testMap = caller.getAllCheckPoint();
+			caller.getAllCheckPoint();
 		} catch(Exception e){
-			System.out.println("Test fails");
+			exception = e;
 		}
-		assertNotNull(testMap);
+		assertNotNull(exception);
 	}
 	
-	//@Test
-	/*public void testWaitA(){
-		int a;
+	@Test
+	public void testWaitA(){
+		int a = 0;
+		int testReturn = 0;
 		try{
-			a = caller.getWaitTime("Checkpoint A-East");
+			testReturn = caller.getWaitTime("Checkpoint A-East");
+			a = testReturn;
 		} catch (Exception e){}
 		
-		assertEquals(a);
-	}*/
+		assertEquals(testReturn, a);
+	}
 
 }
