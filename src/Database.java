@@ -52,7 +52,6 @@ public class Database {
 	}
 
 	
-	
 	/**
 	 * Converts the integer month value to a three-letter string for querying the database
 	 * Method is only necessary in cases where the customs wait times are needed
@@ -153,7 +152,7 @@ public class Database {
 
 
 			// Execute sql string
-			System.out.println("Executing query... " + sqlQuery);
+			//System.out.println("Executing query... " + sqlQuery);
 			ResultSet rs = stmt.executeQuery(sqlQuery);
 
 			
@@ -214,7 +213,7 @@ public class Database {
 			sqlQuery = "select * from customs_wait_times where arrival_date like \'%" + dayOfMonth + "-" + strMonth  + "%\'";
 
 			// Execute it
-			System.out.println("Executing query... " + sqlQuery);
+			//System.out.println("Executing query... " + sqlQuery);
 			ResultSet rs = stmt.executeQuery(sqlQuery);
 
 			// Iterate over rs to retrieve results

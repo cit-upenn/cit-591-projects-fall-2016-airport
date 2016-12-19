@@ -64,5 +64,31 @@ public class DatabaseTest {
 		customsDelays = db.queryCustomsData();
 		assertNotNull("Customs delay data cannot be null", customsDelays);	
 	}
+	
+	 @Test
+	 public void testExceptionPullFlightDelayData(){
+		 Exception exception = new Exception();
+		 exception = null;
+		 try{
+			 db.pullFlightDelayData();
+		 } catch(Exception e){
+			 exception = e;
+		 }
+		 
+		 assertEquals(null, exception);
+	 }
+	 
+	 @Test
+	 public void testExceptionQueryCustomsData(){
+		 Exception exception = new Exception();
+		 exception = null;
+		 try{
+			 db.queryCustomsData();
+		 } catch(Exception e){
+			 exception = e;
+		 }
+		 
+		 assertEquals(null, exception);
+	 }
 
 }
