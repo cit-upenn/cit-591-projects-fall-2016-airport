@@ -33,7 +33,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
- * Graphical User Interface for 591 Project.
+ * Graphical User Interface
  * Displays a user interface with 3 different functionalities:
  * 1) Checking TSA airport security wait times at PHL
  * 2) Finding expected flight delay time or expected wait at Customs and Border Patrol
@@ -60,7 +60,9 @@ public class GUI extends Application {
 	final XYChart.Series<String, Number> series3 =
 			new XYChart.Series<String, Number>();
 
-
+	/**
+	 * Creates the GUI.
+	 */
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		primaryStage.setTitle("Philadelphia Airport Planner");
@@ -292,8 +294,6 @@ public class GUI extends Application {
 
         sbc.getData().addAll(series1, series2, series3);
         garage.getChildren().add(sbc);
-        
-        
         
 		primaryStage.setScene(new Scene(root, 700, 700));
 	    primaryStage.show();
