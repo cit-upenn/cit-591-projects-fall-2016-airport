@@ -2,8 +2,10 @@ package src;
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
 import java.util.HashMap;
 
+import org.json.JSONException;
 import org.junit.Test;
 
 public class TSACallerTest {
@@ -23,27 +25,15 @@ public class TSACallerTest {
 	}
 	
 	@Test
-	public void testGetCheckpoints(){
-		//HashMap<String, Integer> testMap = new HashMap<String, Integer>();
-		Exception exception = null;
-		try{
-			caller.getAllCheckPoint();
-		} catch(Exception e){
-			exception = e;
-		}
-		assertNotNull(exception);
+	public void testGetCheckpoints() throws JSONException, IOException{
+		assertNotNull(caller.getAllCheckPoint());
 	}
 	
 	@Test
-	public void testWaitA(){
-		int a = 0;
-		int testReturn = 0;
-		try{
-			testReturn = caller.getWaitTime("Checkpoint A-East");
-			a = testReturn;
-		} catch (Exception e){}
+	public void testWaitA() throws JSONException, IOException{
 		
-		assertEquals(testReturn, a);
+		assertNotNull(caller.getWaitTime("Checkpoint A-East"));
 	}
 
 }
+

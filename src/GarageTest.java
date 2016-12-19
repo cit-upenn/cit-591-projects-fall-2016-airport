@@ -68,4 +68,9 @@ public class GarageTest {
 		assertEquals("Used spaces should be 1070", 1070, used);
 		
 	}
+	
+	@Test
+	public void testGetGarages(){
+		
+	}
 }
