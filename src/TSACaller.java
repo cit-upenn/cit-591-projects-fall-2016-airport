@@ -18,7 +18,7 @@ public class TSACaller extends RestCaller {
 		TSAAnalyzer ana = new TSAAnalyzer(parser);
 		return ana.getTimeAtCheckpoint();
 	}
-	
+
 	public int getWaitTime(String checkpoint) throws JSONException, IOException {
 		return getAllCheckPoint().get(checkpoint);
 	}
