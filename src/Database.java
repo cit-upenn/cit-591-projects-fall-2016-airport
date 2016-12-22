@@ -16,10 +16,11 @@ public class Database {
 	// Database information and credentials
 	Connection conn = null;
 	Statement stmt = null;
-	private final String DB_URL = "cit591-airports.czp0ytib1pp5.us-east-1.rds.amazonaws.com";
-	private final String DB_NAME = "ORCL";
-	private final String USER = "airports";
-	private final String PASSWORD = "swapneel";
+	//Database credentials have been removed for public repo security purposes
+	private final String DB_URL = "xxxxx";
+	private final String DB_NAME = "xxxx";
+	private final String USER = "xxxxxxxx";
+	private final String PASSWORD = "xxxxxxxx";
 	private int dayOfWeek;
 	private int month;
 	private String strMonth ;
