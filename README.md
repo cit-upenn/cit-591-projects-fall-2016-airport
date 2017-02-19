@@ -15,7 +15,7 @@ airLine's ultimate purpose is to reduce the stress associated with travelling; u
 have a better idea of how long they'll be standing in lines and sitting in terminals, eliminating the danger of arriving too late and missing
 flights or connections farther along in a trip.
 
-#Desgin
+#Design
 
 This application uses TSA security APIs, along with data migrated into an AWS ORCL database. The GUI is built on JavaFX. AWS credentials
 have been removed from the source code for security purposes, so please contact us if you'd like a demo. Consult the User Manual for better
